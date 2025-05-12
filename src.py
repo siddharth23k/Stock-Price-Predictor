@@ -5,13 +5,15 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 from alpha_vantage.timeseries import TimeSeries
 from sklearn.preprocessing import MinMaxScaler
+from dotenv import load_dotenv
+import os
 
 #header and subheader
 st.header('Stock Market Predictor')
 stock =st.text_input('Enter Stock Symnbol', 'GOOG')
 
-#getting the data
-API_KEY = "4CT7Q5APB1Q99DFK"
+load_dotenv()  # Load the environment variables from .env
+API_KEY = os.getenv('API_KEY')
 ts = TimeSeries(key=API_KEY, output_format="pandas")
 
 if stock: 
